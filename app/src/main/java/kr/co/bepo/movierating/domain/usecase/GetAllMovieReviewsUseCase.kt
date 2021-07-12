@@ -1,10 +1,27 @@
 package kr.co.bepo.movierating.domain.usecase
 
 import kr.co.bepo.movierating.data.repository.ReviewRepository
-import kr.co.bepo.movierating.domain.model.Review
+import kr.co.bepo.movierating.data.repository.UserRepository
+import kr.co.bepo.movierating.domain.model.MovieReviews
+import kr.co.bepo.movierating.domain.model.User
 
-class GetAllMovieReviewsUseCase(private val reviewRepository: ReviewRepository) {
+class GetAllMovieReviewsUseCase(
+    private val userRepository: UserRepository,
+    private val reviewRepository: ReviewRepository
+) {
+    suspend operator fun invoke(movieId: String): MovieReviews {
+        val reviews = reviewRepository.getAllMovieReviews(movieId)
+        val user = userRepository.getUser()
 
-    suspend operator fun invoke(movieId: String): List<Review> =
-        reviewRepository.getAllMovieReviews(movieId)
+        if (user == null) {
+            userRepository.saveUser(User())
+
+            return MovieReviews(null, reviews)
+        }
+
+        return MovieReviews(
+            reviews.find { it.userId == user.id },
+            reviews.filter { it.userId != user.id }
+        )
+    }
 }
