@@ -3,6 +3,9 @@ package kr.co.bepo.movierating
 import android.app.Application
 import androidx.viewbinding.BuildConfig
 import kr.co.bepo.movierating.di.appModule
+import kr.co.bepo.movierating.di.dataModule
+import kr.co.bepo.movierating.di.domainModule
+import kr.co.bepo.movierating.di.presenterModule
 import kr.co.bepo.movierating.utillity.MovieDataGenerator
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,9 +23,9 @@ class MainApplication : Application() {
                 else Level.NONE
             )
             androidContext(this@MainApplication)
-            modules(appModule)
+            modules(appModule + dataModule + domainModule + presenterModule)
         }
-        // FireStore 에 Movie 더미 데이터 생성용
+        // Firestore 에 Movie 더미 데이터 생성용
 //        MovieDataGenerator().generate()
     }
 }
