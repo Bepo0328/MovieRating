@@ -12,6 +12,7 @@ import kr.co.bepo.movierating.data.repository.MovieRepositoryImpl
 import kr.co.bepo.movierating.data.repository.ReviewRepository
 import kr.co.bepo.movierating.data.repository.ReviewRepositoryImpl
 import kr.co.bepo.movierating.domain.usecase.GetAllMoviesUseCase
+import kr.co.bepo.movierating.domain.usecase.GetAllReviewsUseCase
 import kr.co.bepo.movierating.domain.usecase.GetRandomFeaturedMovieUseCase
 import kr.co.bepo.movierating.presentation.home.HomeContract
 import kr.co.bepo.movierating.presentation.home.HomeFragment
@@ -31,6 +32,7 @@ val dataModule = module {
 val domainModule = module {
     factory { GetRandomFeaturedMovieUseCase(get(), get()) }
     factory { GetAllMoviesUseCase(get()) }
+    factory { GetAllReviewsUseCase(get()) }
 }
 
 val presenterModule = module {

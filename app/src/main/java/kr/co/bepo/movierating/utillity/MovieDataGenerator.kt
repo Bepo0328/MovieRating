@@ -11,7 +11,7 @@ class MovieDataGenerator {
         val firestore = Firebase.firestore
 
         movieData.forEach {
-            firestore.collection(DBKey.MOVIES_COLLECTION).add(it)
+            firestore.collection(DBKey.COLLECTION_MOVIES).add(it)
         }
     }
 

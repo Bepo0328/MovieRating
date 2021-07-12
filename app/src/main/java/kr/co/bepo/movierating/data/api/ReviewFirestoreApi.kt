@@ -12,12 +12,20 @@ class ReviewFirestoreApi(
 ) : ReviewApi {
 
     override suspend fun getLatestReview(movieId: String): Review? =
-        firestore.collection(DBKey.REVIEWS_COLLECTION)
-            .whereEqualTo("movieId", movieId)
-            .orderBy("createdAt", Query.Direction.DESCENDING)
+        firestore.collection(DBKey.COLLECTION_REVIEWS)
+            .whereEqualTo(DBKey.FIELD_MOVIE_ID, movieId)
+            .orderBy(DBKey.FIELD_CREATED_AT, Query.Direction.DESCENDING)
             .limit(1)
             .get()
             .await()
             .map { it.toObject<Review>() }
             .firstOrNull()
+
+    override suspend fun getAllReviews(movieId: String): List<Review> =
+        firestore.collection(DBKey.COLLECTION_REVIEWS)
+            .whereEqualTo(DBKey.FIELD_MOVIE_ID, movieId)
+            .orderBy(DBKey.FIELD_CREATED_AT, Query.Direction.DESCENDING)
+            .get()
+            .await()
+            .map { it.toObject<Review>() }
 }

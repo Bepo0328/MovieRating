@@ -2,7 +2,9 @@ package kr.co.bepo.movierating
 
 class DBKey {
     companion object {
-        const val MOVIES_COLLECTION = "movies"
-        const val REVIEWS_COLLECTION = "reviews"
+        const val COLLECTION_MOVIES = "movies"
+        const val COLLECTION_REVIEWS = "reviews"
+        const val FIELD_MOVIE_ID = "movieId"
+        const val FIELD_CREATED_AT = "createAt"
     }
 }

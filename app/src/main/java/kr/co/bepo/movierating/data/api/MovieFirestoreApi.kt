@@ -11,7 +11,7 @@ class MovieFirestoreApi(
 ) : MovieApi {
 
     override suspend fun getAllMovies(): List<Movie> =
-        firestore.collection(DBKey.MOVIES_COLLECTION)
+        firestore.collection(DBKey.COLLECTION_MOVIES)
             .get()
             .await()
             .map { it.toObject<Movie>() }
