@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.bepo.movierating.databinding.FragmentHomeBinding
@@ -34,6 +35,7 @@ class HomeFragment : ScopeFragment(), HomeContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
+        bindView()
         presenter.onViewCreated()
     }
 
@@ -79,6 +81,15 @@ class HomeFragment : ScopeFragment(), HomeContract.View {
             addItemDecoration(GridSpacingItemDecoration(gridLayoutManager.spanCount, dip(6f)))
         }
 
+    }
+
+    private fun bindView() {
+        (binding?.recyclerView?.adapter as? HomeAdapter)?.apply {
+            onMovieClickListener = { movie ->
+                val action = HomeFragmentDirections.toMovieReviewsAction(movie)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun RecyclerView.createGridLayoutManager(): GridLayoutManager =

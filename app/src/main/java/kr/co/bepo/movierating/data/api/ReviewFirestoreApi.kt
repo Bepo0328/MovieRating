@@ -21,9 +21,17 @@ class ReviewFirestoreApi(
             .map { it.toObject<Review>() }
             .firstOrNull()
 
-    override suspend fun getAllReviews(movieId: String): List<Review> =
+    override suspend fun getAllMovieReviews(movieId: String): List<Review> =
         firestore.collection(DBKey.COLLECTION_REVIEWS)
             .whereEqualTo(DBKey.FIELD_MOVIE_ID, movieId)
+            .orderBy(DBKey.FIELD_CREATED_AT, Query.Direction.DESCENDING)
+            .get()
+            .await()
+            .map { it.toObject<Review>() }
+
+    override suspend fun getAllUserReviews(userId: String): List<Review> =
+        firestore.collection(DBKey.COLLECTION_REVIEWS)
+            .whereEqualTo(DBKey.FIELD_USER_ID, userId)
             .orderBy(DBKey.FIELD_CREATED_AT, Query.Direction.DESCENDING)
             .get()
             .await()

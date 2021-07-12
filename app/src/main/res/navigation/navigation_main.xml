@@ -34,6 +34,12 @@
         android:id="@+id/movie_reviews_dest"
         android:name="kr.co.bepo.movierating.presentation.reviews.MovieReviewsFragment"
         android:label="@string/title_movie_reviews"
-        tools:layout="@layout/fragment_movie_reviews" />
+        tools:layout="@layout/fragment_movie_reviews">
+
+        <argument
+            android:name="movie"
+            app:argType="kr.co.bepo.movierating.domain.model.Movie" />
+
+    </fragment>
 
 </navigation>
