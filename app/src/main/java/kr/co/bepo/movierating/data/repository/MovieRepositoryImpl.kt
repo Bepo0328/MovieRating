@@ -8,7 +8,7 @@ import kr.co.bepo.movierating.domain.model.Movie
 class MovieRepositoryImpl(
     private val movieApi: MovieApi,
     private val dispatcher: CoroutineDispatcher
-): MovieRepository {
+) : MovieRepository {
 
     override suspend fun getAllMovies(): List<Movie> = withContext(dispatcher) {
         movieApi.getAllMovies()

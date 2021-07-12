@@ -16,6 +16,9 @@ import kr.co.bepo.movierating.domain.usecase.GetRandomFeaturedMovieUseCase
 import kr.co.bepo.movierating.presentation.home.HomeContract
 import kr.co.bepo.movierating.presentation.home.HomeFragment
 import kr.co.bepo.movierating.presentation.home.HomePresenter
+import kr.co.bepo.movierating.presentation.mypage.MyPageContract
+import kr.co.bepo.movierating.presentation.mypage.MyPageFragment
+import kr.co.bepo.movierating.presentation.mypage.MyPagePresenter
 import kr.co.bepo.movierating.presentation.reviews.MovieReviewsContract
 import kr.co.bepo.movierating.presentation.reviews.MovieReviewsFragment
 import kr.co.bepo.movierating.presentation.reviews.MovieReviewsPresenter
@@ -53,5 +56,8 @@ val presenterModule = module {
         scoped<MovieReviewsContract.Presenter> { (movie: Movie) ->
             MovieReviewsPresenter(movie, getSource(), get())
         }
+    }
+    scope<MyPageFragment> {
+        scoped<MyPageContract.Presenter> { MyPagePresenter(getSource(), get()) }
     }
 }

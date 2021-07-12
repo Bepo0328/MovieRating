@@ -1,11 +1,10 @@
-package kr.co.bepo.movierating.presentation.home
+package kr.co.bepo.movierating.presentation.mypage
 
-import kr.co.bepo.movierating.domain.model.FeaturedMovie
-import kr.co.bepo.movierating.domain.model.Movie
+import kr.co.bepo.movierating.domain.model.ReviewedMovie
 import kr.co.bepo.movierating.presentation.BasePresenter
 import kr.co.bepo.movierating.presentation.BaseView
 
-interface HomeContract {
+interface MyPageContract {
 
     interface View : BaseView<Presenter> {
 
@@ -13,12 +12,11 @@ interface HomeContract {
 
         fun hideLoadingIndicator()
 
+        fun showNoDataDescription(message: String)
+
         fun showErrorDescription(message: String)
 
-        fun showMovies(
-            featuredMovie: FeaturedMovie?,
-            movies: List<Movie>
-        )
+        fun showReviewedMovies(reviewedMovies: List<ReviewedMovie>)
     }
 
     interface Presenter : BasePresenter

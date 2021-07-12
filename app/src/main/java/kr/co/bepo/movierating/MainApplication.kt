@@ -6,7 +6,6 @@ import kr.co.bepo.movierating.di.appModule
 import kr.co.bepo.movierating.di.dataModule
 import kr.co.bepo.movierating.di.domainModule
 import kr.co.bepo.movierating.di.presenterModule
-import kr.co.bepo.movierating.utillity.MovieDataGenerator
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
