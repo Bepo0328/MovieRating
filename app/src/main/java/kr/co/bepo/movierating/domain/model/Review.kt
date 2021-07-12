@@ -9,7 +9,7 @@ data class Review(
     val id: String? = null,
 
     @ServerTimestamp
-    val createAt: Date? = null,
+    val createdAt: Date? = null,
 
     val userId: String? = null,
     val movieId: String? = null,

@@ -9,7 +9,7 @@ class GetRandomFeaturedMovieUseCase(
     private val reviewRepository: ReviewRepository
 ) {
 
-    suspend operator fun invoke() : FeaturedMovie? {
+    suspend operator fun invoke(): FeaturedMovie? {
         val featuredMovies = movieRepository.getAllMovies()
             .filter { it.id.isNullOrBlank().not() }
             .filter { it.isFeatured == true }

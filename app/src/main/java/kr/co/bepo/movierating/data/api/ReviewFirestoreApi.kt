@@ -14,7 +14,7 @@ class ReviewFirestoreApi(
     override suspend fun getLatestReview(movieId: String): Review? =
         firestore.collection(DBKey.REVIEWS_COLLECTION)
             .whereEqualTo("movieId", movieId)
-            .orderBy("createAt", Query.Direction.DESCENDING)
+            .orderBy("createdAt", Query.Direction.DESCENDING)
             .limit(1)
             .get()
             .await()
