@@ -9,10 +9,7 @@ import kr.co.bepo.movierating.data.preference.PreferenceManager
 import kr.co.bepo.movierating.data.preference.SharedPreferenceManager
 import kr.co.bepo.movierating.data.repository.*
 import kr.co.bepo.movierating.domain.model.Movie
-import kr.co.bepo.movierating.domain.usecase.GetAllMovieReviewsUseCase
-import kr.co.bepo.movierating.domain.usecase.GetAllMoviesUseCase
-import kr.co.bepo.movierating.domain.usecase.GetMyReviewedMoviesUseCase
-import kr.co.bepo.movierating.domain.usecase.GetRandomFeaturedMovieUseCase
+import kr.co.bepo.movierating.domain.usecase.*
 import kr.co.bepo.movierating.presentation.home.HomeContract
 import kr.co.bepo.movierating.presentation.home.HomeFragment
 import kr.co.bepo.movierating.presentation.home.HomePresenter
@@ -46,6 +43,8 @@ val domainModule = module {
     factory { GetAllMoviesUseCase(get()) }
     factory { GetAllMovieReviewsUseCase(get()) }
     factory { GetMyReviewedMoviesUseCase(get(), get(), get()) }
+    factory { SubmitReviewUseCase(get(), get()) }
+    factory { DeleteReviewUseCase(get()) }
 }
 
 val presenterModule = module {
